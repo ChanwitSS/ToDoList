@@ -1,0 +1,14 @@
+package cc.magickiat.springboot.backend;
+
+import cc.magickiat.springboot.backend.controller.AssignmentsController;
+import cc.magickiat.springboot.backend.model.Assignment;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BackEndApp {
+
+    public static void main(String[] args) {
+        SpringApplication.run(BackEndApp.class, args);
+    }
+}
