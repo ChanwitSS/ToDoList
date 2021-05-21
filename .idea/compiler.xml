@@ -12,10 +12,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="backend" target="11" />
-      <module name="frontend" target="11" />
+      <module name="backend" target="${jdk.version}" />
+      <module name="frontend" target="${jdk.version}" />
       <module name="to_do_list" target="11" />
-      <module name="ToDoList" target="11" />
+      <module name="ToDoList" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

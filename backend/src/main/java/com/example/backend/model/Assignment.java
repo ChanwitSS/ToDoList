@@ -1,4 +1,4 @@
-package cc.magickiat.springboot.backend.model;
+package com.example.backend.model;
 import javax.persistence.*;
 
 @Entity
@@ -7,13 +7,9 @@ public class Assignment {
     @Id
     @GeneratedValue
     private String assignmentName;
-    @Column(name = "assignedPerson")
     private String assignedPerson;
-    @Column(name = "startDate")
     private String startDate;
-    @Column(name = "endDate")
     private String endDate;
-    @Column(name = "description")
     private String description;
 
     public Assignment(String assignmentName, String startDate, String endDate, String description, String assignedPerson) {
