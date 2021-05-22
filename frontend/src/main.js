@@ -4,7 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'  
 import 'ant-design-vue/dist/antd.css';
-import {Table,Input,DatePicker,Button,Divider,Form,Select,Radio} from 'ant-design-vue'
+import {Table,Input,DatePicker,Button,Divider,Form,Select,Radio, Popconfirm} from 'ant-design-vue'
 
 Vue.config.productionTip = false
 Vue.use(Table)
@@ -15,6 +15,7 @@ Vue.use(Divider)
 Vue.use(Form)
 Vue.use(Select)
 Vue.use(Radio)
+Vue.use(Popconfirm)
 
 Vue.use(VueAxios, axios);
 

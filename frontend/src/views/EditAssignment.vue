@@ -12,20 +12,29 @@
 
 <script>
 export default {
-    name: "AddAssignment",
-    data(){
-        return {
-        dataSource: null,
-        columns,
-        dataLoaded: false}
+    name: "EditAssignment",
+    date(){
+        return{
+            dateStr: null
+        }
     },
-
-    async mounted () {
-        await axios.get("http://localhost:8082/assignments").then((response) => (
-        this.dataSource = Array.from(response.data)))
-        console.log(this.dataSource)
-        this.dataLoaded = true
-  },
+    methods:{
+        editAssignment(assignmentNameValue,assignedPersonValue,descriptionValue){
+            axios.put("http://localhost:8081/assignments/edit"+id,{
+                assignmentName: assignmentNameValue, 
+                startDate: this.dateStr[0],
+                endDate: this.dateStr[1],
+                description: descriptionValue,
+                assignedPerson: assignedPersonValue
+            })
+            console.log('edited successfully')
+        },
+        /*onChange(date, dateString) {
+            console.log(date, dateString);
+            this.dateStr = dateString
+            console.log(this.dateStr);
+        }*/
+    }
 }
 
 </script>

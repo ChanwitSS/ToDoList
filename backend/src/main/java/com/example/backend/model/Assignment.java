@@ -1,23 +1,31 @@
 package com.example.backend.model;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Table(name = "assignment")
 public class Assignment {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String assignmentName;
     private String assignedPerson;
     private String startDate;
     private String endDate;
     private String description;
 
-    public Assignment(String assignmentName, String startDate, String endDate, String description, String assignedPerson) {
-        this.description = description;
+    public Assignment(){
+    }
+
+    public Assignment(Long id, String assignmentName, String startDate, String endDate, String description, String assignedPerson) {
+        this.id = id;
         this.assignmentName = assignmentName;
-        this.assignedPerson = assignedPerson;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.description = description;
+        this.assignedPerson = assignedPerson;
     }
 
     public String getDescription() {
@@ -60,4 +68,11 @@ public class Assignment {
         this.endDate = endDate;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -27,17 +27,16 @@ export default {
     },
     methods:{
         addAssignment(assignmentNameValue,assignedPersonValue,descriptionValue){
-            axios.put("http://localhost:8082/assignments/"+assignmentNameValue,{
+            axios.put("http://localhost:8081/assignments/add",{
                 assignmentName: assignmentNameValue, 
                 startDate: this.dateStr[0],
                 endDate: this.dateStr[1],
                 description: descriptionValue,
                 assignedPerson: assignedPersonValue
-            },{
-                headers: {}    
             })
             console.log('saved successfully')
             console.log(assignmentNameValue+assignedPersonValue+descriptionValue)
+            window.location.href = "/"
         },
         onChange(date, dateString) {
             console.log(date, dateString);

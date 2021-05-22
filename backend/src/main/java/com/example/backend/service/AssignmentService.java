@@ -18,45 +18,36 @@ import java.util.Optional;
 @Service
 public class AssignmentService {
 
-    /*List<Assignment> assignments = new ArrayList<>(Arrays.asList(
-            new Assignment("Java", "01/01/2021", "02/01/2021","Coding java program", "Mark"),
-            new Assignment("Python", "04/02/2021", "06/02/2021","Coding python program", "Elon")
-    ));*/
-
-    private AssignmentRepository assignmentRepository;
     @Autowired
-    public AssignmentService(AssignmentRepository assignmentRepository){
-        this.assignmentRepository = assignmentRepository;
-    }
+    private  AssignmentRepository assignmentRepository;
 
     public List<Assignment> getAllAssignment(){
         System.out.println("Show all!!");
-        return assignmentRepository.findAll();
+        System.out.println(assignmentRepository.findAll());
+        return  assignmentRepository.findAll();
     }
 
     public void addAssignment(Assignment assignment) {
-        Optional<Assignment> assignmentOptional = assignmentRepository.findAssignmentByName(assignment.getAssignmentName());
-        if (assignmentOptional.isPresent()){
+        Optional <Assignment> asm = assignmentRepository.findByName(assignment.getAssignmentName());
+        if (asm.isPresent()){
             throw new IllegalStateException("Name taken");
         }
         assignmentRepository.save(assignment);
         System.out.println("Add!!");
     }
 
-    public void deleteAssignment(Assignment assignment) {
-        assignmentRepository.delete(assignment);
+    public void deleteAssignment(Long id) {
+        assignmentRepository.deleteById(id);
     }
 
-    /*public void editAssignment(Assignment assignment){
-        for(Assignment asm: assignments){
-            if (asm.getAssignmentName().equals(assignment.getAssignmentName())){
-                asm.setAssignmentName(assignment.getAssignmentName());
-                asm.setStartDate(assignment.getStartDate());
-                asm.setEndDate(assignment.getEndDate());
-                asm.setDescription(assignment.getDescription());
-                asm.setAssignedPerson(assignment.getAssignedPerson());
-            }
-        }
-    }*/
+    public void editAssignment(Assignment assignment){
+        Assignment asm = assignmentRepository.findByID(assignment.getId());
+
+        asm.setAssignmentName(assignment.getAssignmentName());
+        asm.setStartDate(assignment.getStartDate());
+        asm.setEndDate(assignment.getEndDate());
+        asm.setDescription(assignment.getDescription());
+        asm.setAssignedPerson(assignment.getAssignedPerson());
+    }
 
 }

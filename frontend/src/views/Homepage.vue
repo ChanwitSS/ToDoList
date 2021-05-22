@@ -1,12 +1,14 @@
 <template v-if="dataLoaded">
     <div >
       <a-table :columns="columns" :data-source="dataSource">
-        <a slot="name" slot-scope="text">{{ text }}</a>
-          <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-          <span slot="action">
+        <a slot="name" slot-scope="text">{{text}}</a>
+        <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+        <span slot="action" slot-scope="id"> <!-- slot-scopre อ้างอิง object ในแต่ละ row -->
           <a>Edit</a>
           <a-divider type="vertical" />
-          <a>Delete</a>
+          <a-popconfirm v-if="dataSource.length" title="Sure to delete?" @confirm="() => deleteAssignment(id.id) ">
+            <a>Delete</a>
+          </a-popconfirm>
           <a-divider type="vertical" />
         </span>
       </a-table>
@@ -75,15 +77,21 @@ export default {
       columns,
       dataLoaded: false}
   },
-
   async mounted () {
-    await axios.get("http://localhost:8082/assignments").then((response) => (
+    await axios.get("http://localhost:8081/assignments").then((response) => (
       this.dataSource = Array.from(response.data)
     ))
     console.log(this.dataSource)
     this.dataLoaded = true
   },
-
+  methods: {
+    deleteAssignment(id){
+      axios.delete("http://localhost:8081/assignments/"+id)
+      console.log(id)
+      console.log('deleted successfully')
+      window.location.href = "/"
+    }
+  }
 }
 </script>
 
