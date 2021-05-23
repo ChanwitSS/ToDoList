@@ -1,2 +1,1 @@
-- Run vue.js
-npm run serve
+Run vue.js(Frontend) - npm run serve
