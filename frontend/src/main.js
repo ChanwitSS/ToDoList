@@ -17,6 +17,7 @@ Vue.use(Select)
 Vue.use(Radio)
 Vue.use(Popconfirm)
 
+Vue.use(require('vue-moment'));
 Vue.use(VueAxios, axios);
 
 new Vue({

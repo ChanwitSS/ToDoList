@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,6 +28,10 @@ public class AssignmentService {
         return  assignmentRepository.findAll();
     }
 
+    public Assignment getAssignment(Long id){
+        return assignmentRepository.findByID(id);
+    }
+
     public void addAssignment(Assignment assignment) {
         Optional <Assignment> asm = assignmentRepository.findByName(assignment.getAssignmentName());
         if (asm.isPresent()){
@@ -40,7 +45,8 @@ public class AssignmentService {
         assignmentRepository.deleteById(id);
     }
 
-    public void editAssignment(Assignment assignment){
+    @Transactional
+    public void updateAssignment(Assignment assignment){
         Assignment asm = assignmentRepository.findByID(assignment.getId());
 
         asm.setAssignmentName(assignment.getAssignmentName());

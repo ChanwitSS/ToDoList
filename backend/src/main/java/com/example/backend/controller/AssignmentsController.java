@@ -22,14 +22,8 @@ public class AssignmentsController {
     }
 
     @GetMapping("/assignments/{id}")
-    public ResponseEntity<Assignment> get(@RequestBody Assignment assignment) {
-
-        for(Assignment asm: assignmentService.getAllAssignment()){
-            if (asm.getAssignmentName().equals(assignment.getAssignmentName())){
-                return new ResponseEntity<Assignment>(asm, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<Assignment>(HttpStatus.NOT_FOUND);
+    public Assignment get(@PathVariable Long id) {
+        return assignmentService.getAssignment(id);
     }
 
     @PutMapping("/assignments/add")
@@ -37,14 +31,14 @@ public class AssignmentsController {
         assignmentService.addAssignment(assignment);
     }
 
-    @DeleteMapping("/assignments/{id}")
+    @DeleteMapping("/assignments/delete/{id}")
     public void deleteAssignment(@PathVariable("id") Long id) {
         assignmentService.deleteAssignment(id);
     }
 
-    @Transactional("/assignments/{id}")
+    @PutMapping("/assignments/edit/{id}")
     public void editAssignment(@RequestBody Assignment assignment){
-        assignmentService.editAssignment(assignment);
+        assignmentService.updateAssignment(assignment);
     }
 
 }

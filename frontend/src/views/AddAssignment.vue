@@ -12,11 +12,6 @@
 
 <script>
 import axios from 'axios'
-/*function addAssignment(){
-  axios.put("/assignments",{assignmentName: , startDate:, endDate:, description:, assignedPerson:,}).then(
-    function(response){console.log('saved successfully')
-  );
-}*/
 
 export default {
     name: "AddAssignment",
@@ -42,7 +37,6 @@ export default {
             console.log(date, dateString);
             this.dateStr = dateString
             console.log(this.dateStr);
-            
         }
     }
 }
